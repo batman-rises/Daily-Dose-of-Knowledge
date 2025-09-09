@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:5000";
 
-export const getQuote = async () => {
+const getQuote = async () => {
   try {
     const res = await axios.get(`${BASE_URL}/api/quote`);
     return res.data;
@@ -12,7 +12,7 @@ export const getQuote = async () => {
   }
 };
 
-export const getFact = async () => {
+const getFact = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/api/fact`);
     return response.data;
@@ -22,7 +22,7 @@ export const getFact = async () => {
   }
 };
 
-export const getJoke = async () => {
+const getJoke = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/api/joke`);
     return response.data;
@@ -32,7 +32,7 @@ export const getJoke = async () => {
   }
 };
 
-export const getWord = async () => {
+const getWord = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/api/word`);
     return response.data;
@@ -42,7 +42,7 @@ export const getWord = async () => {
   }
 };
 
-export const getFavorites = async () => {
+const getFavorites = async () => {
   try {
     const res = await axios.get(`${BASE_URL}/api/favorites`);
     return res.data;
@@ -52,15 +52,16 @@ export const getFavorites = async () => {
   }
 };
 
-export const saveFavorite = async (payload) => {
+const saveFavorite = async (payload) => {
   try {
     const res = await axios.post(`${BASE_URL}/api/favorites`, payload);
-    return response.data;
+    return res.data;
   } catch (e) {
     console.log("Error Saving Favorite", e);
     throw e;
   }
 };
+
 const deleteFavorite = async (id) => {
   try {
     const response = await axios.delete(`${BASE_URL}/api/favorites/${id}`);
@@ -69,4 +70,15 @@ const deleteFavorite = async (id) => {
     console.error("Error deleting favorite:", error);
     throw error;
   }
+};
+
+// DEFAULT EXPORT - this is what fixes the error
+export default {
+  getQuote,
+  getFact,
+  getJoke,
+  getWord,
+  getFavorites,
+  saveFavorite,
+  deleteFavorite,
 };
