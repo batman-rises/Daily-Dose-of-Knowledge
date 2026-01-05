@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
+// This line checks if a Vercel Environment Variable exists.
+// If not, it falls back to localhost for your local development.
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const getQuote = async () => {
   try {
@@ -72,7 +74,6 @@ const deleteFavorite = async (id) => {
   }
 };
 
-// DEFAULT EXPORT - this is what fixes the error
 export default {
   getQuote,
   getFact,
